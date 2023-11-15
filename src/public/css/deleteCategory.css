@@ -1,0 +1,218 @@
+.deleteCategory__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteCategory__admin-btn-cont {
+    width: 95%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.deleteCategory__admin-btn {
+    width: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 0;
+    color: var(--white);
+    background-color: var(--dark-purple);
+    border: 1px solid var(--dark-purple);
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2),
+        0 1px 1px 0 rgba(0, 0, 0, .14),
+        0 1px 3px 0 rgba(0, 0, 0, .12);
+}
+
+.deleteCategory__admin-btn:hover,
+.deleteCategory__admin-btn--selected {
+    width: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 0;
+    color: var(--dark-purple);
+    background-color: var(--white);
+    border: 2px solid var(--dark-purple);
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2),
+        0 1px 1px 0 rgba(0, 0, 0, .14),
+        0 1px 3px 0 rgba(0, 0, 0, .12);
+    cursor: default;
+}
+
+.deleteCategory__admin-btn:hover {
+    cursor: pointer;
+}
+
+.deleteCategory__form {
+    width: 95%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--dark-purple);
+    border-radius: 10px;
+    background-color: var(--light-purple);
+}
+
+.deleteCategory__form-inp-cont {
+    font-size: 20px;
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.deleteCategory__form-inp-txt {
+    text-align: center;
+    color: var(--dark-purple);
+    width: 90%;
+}
+
+.deleteCategory__form-inp {
+    font-size: 18px;
+    padding: 5px;
+    width: 90%;
+}
+
+.deleteCategory__form-btn {
+    width: 100%;
+    height: 40px;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 15px;
+    color: var(--white);
+    background-color: var(--dark-purple);
+    border: 0;
+    border-top: 1px solid var(--dark-purple);
+    border-radius: 0 0 9px 9px;
+    transition: ease .5s;
+}
+
+.deleteCategory__form-btn:hover {
+    font-weight: bold;
+    color: var(--dark-purple);
+    background-color: var(--white);
+    transition: ease .5s;
+    cursor: pointer;
+}
+
+@media (min-width: 550px) {
+    .deleteCategory__form {
+        max-width: 600px;
+    }
+
+    .deleteCategory__form-inp-cont {
+        width: 90%;
+        flex-direction: initial;
+        gap: 0;
+        margin-bottom: 0;
+    }
+
+    /* Estilos que comparten todos los inputs */
+    .deleteCategory__form-inp-txt {
+        width: 40%;
+        font-size: 25px;
+        text-align: start;
+    }
+
+    .deleteCategory__form-inp {
+        width: 60%;
+    }
+}
+
+/* ---- DeleteProd ---- */
+.confirm-delete__cont {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(252, 252, 252, 0.5);
+    display: none;
+    position: fixed;
+    z-index: 100;
+}
+
+.confirm-delete__form {
+    width: 95%;
+    height: 290px;
+    margin: auto;
+    padding: 5px;
+    background-color: var(--white);
+    border: 3px solid var(--dark-purple);
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-delete__title {
+    color: var(--dark-purple);
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.confirm-delete__text {
+    color: var(--dark-purple);
+    font-size: 20px;
+    text-align: center;
+    width: 95%;
+    margin: 10px 0 25px 0;
+}
+
+.confirm-delete__btn-cont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-delete__btn--green,
+.confirm-delete__btn--red {
+    font-size: 20px;
+    color: whitesmoke;
+    text-align: center;
+    padding: 10px 15px;
+    margin: 0 5px;
+    width: 112px;
+    border: 1px solid var(--dark-purple);
+    cursor: pointer;
+    transition: ease .5s;
+}
+
+.confirm-delete__btn--green:hover,
+.confirm-delete__btn--red:hover {
+    text-shadow: 4px 3px 9px rgba(0, 0, 0, 0.6);
+    box-shadow: 1px 1px 11px 0px rgba(0, 0, 0, 0.75) inset;
+    -webkit-box-shadow: 1px 1px 11px 0px rgba(0, 0, 0, 0.75) inset;
+    -moz-box-shadow: 1px 1px 11px 0px rgba(0, 0, 0, 0.75) inset;
+    transition: ease .5s;
+}
+
+.confirm-delete__btn--green {
+    background-color: green;
+}
+
+.confirm-delete__btn--red {
+    background-color: red;
+}
+
+@media (min-width: 600px) {
+    .confirm-delete__form {
+        width: 570px;
+    }
+}

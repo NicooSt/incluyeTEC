@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') -%>
+    <body>
+        <%- include('./partials/header') -%>
+        <main>
+            <section class="detailProd">
+                <div class="detailProd__img-cont">
+                    <img src="/img/products/<%= product.img_name %>" alt="imagen" class="detailProd__img" />
+                </div>
+                <div class="detailProd__cont">
+                    <p class="detailProd__name"><%= product.name %></p>
+                    <p class="detailProd__category"><%= product.category.name %></p>
+                    <div class="detailProd__separator"></div>
+                    <div class="detailProd__data">
+                        <div class="detailProd__pricing">
+                            <div class="detailProd__special-price-cont">
+                                <div class="detailProd__special-price-txt-cont">
+                                    <p class="detailProd__special-price-txt">PRECIO ESPECIAL</p>
+                                    <i id="special-price-icon" class="fa-solid fa-circle-info detailProd__special-price-icon"></i>
+                                </div>
+                                <p class="detailProd__special-price">$ <%= addPricePoint(product.special_price) %></p>
+                                <p id="special-price-info" class="detailProd__special-price-info">Pagando por depósito o transferencia bancaria</p>
+                            </div>
+                            <div class="detailProd__additional-price-cont">
+                                <% if (product.installments) { %>
+                                <div class="detailProd__additional-off-price-txt-cont">
+                                    <% if (product.interest) { %>
+                                    <p class="detailProd__additional-price-txt"><%= product.installments_num %> CUOTAS DE</p>
+                                    <p class="detailProd__additional-price">$ <%= addPricePoint(product.installment_price) %></p>
+                                    <p class="detailProd__additional-price-total">
+                                        $ <%= addPricePoint(product.interest_price) %> (<%= product.interest_rate %>%)
+                                    </p>
+                                    <% } else { %>
+                                    <p class="detailProd__additional-price-txt"><%= product.installments_num %> CUOTAS SIN INTERES DE</p>
+                                    <p class="detailProd__additional-price">$ <%= addPricePoint(product.installment_price) %></p>
+                                    <% } %>
+                                </div>
+                                <% } %>
+                                <div class="detailProd__additional-list-price-txt-cont">
+                                    <p class="detailProd__additional-price-txt">PRECIO DE LISTA</p>
+                                    <p class="detailProd__additional-price">$ <%= addPricePoint(product.list_price) %></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detailProd__separator"></div>
+                        <div class="detailProd__benefits">
+                            <% if (product.stock) { %>
+                            <div class="detailProd__benefits-cont">
+                                <% if (product.warranty) { %>
+                                <i class="fa-solid fa-shield-halved detailProd__benefits-icon"></i>
+                                <p class="detailProd__benefits-txt">Garantia Oficial - <%= product.warranty_duration %></p>
+                                <% } else { %>
+                                <i class="fa-solid fa-shield-halved detailProd__benefits-icon detailProd__benefits--red"></i>
+                                <p class="detailProd__benefits-txt detailProd__benefits--red">Producto sin garantia</p>
+                                <% } %>
+                            </div>
+                            <div class="detailProd__benefits-cont">
+                                <% if (product.stock) { %>
+                                <i class="fa-solid fa-check detailProd__benefits-icon"></i>
+                                <p class="detailProd__benefits-txt">Stock disponible</p>
+                                <% } else { %>
+                                <i class="fa-solid fa-xmark detailProd__benefits-icon detailProd__benefits--red"></i>
+                                <p class="detailProd__benefits-txt detailProd__benefits--red">Producto agotado</p>
+                                <% } %>
+                            </div>
+                            <div class="detailProd__benefits-cont">
+                                <% if (product.shipment) { %>
+                                <i class="fa-solid fa-truck detailProd__benefits-icon"></i>
+                                <p class="detailProd__benefits-txt">Envios a todo el pais</p>
+                                <% } else { %>
+                                <i class="fa-solid fa-store detailProd__benefits-icon detailProd__benefits--red"></i>
+                                <p class="detailProd__benefits-txt detailProd__benefits--red">Entrega solo en local</p>
+                                <% } %>
+                            </div>
+                            <% } else { %>
+                            <div class="detailProd__benefits-cont">
+                                <i class="fa-solid fa-xmark detailProd__benefits-icon detailProd__benefits--red"></i>
+                                <p class="detailProd__benefits-txt detailProd__benefits--red">Producto agotado</p>
+                            </div>
+                            <% } %>
+                        </div>
+                        <div class="detailProd__separator"></div>
+                        <div class="detailProd__btn-cont">
+                            <% if (product.stock) { %>
+                            <a href="/products/detail/<%= product.id %>?alert=error_addCart" class="detailProd__add-cart-btn">AGREGAR AL CARRITO</a>
+                            <% } %>
+                            <div class="detailProd__update-delete-btn-cont">
+                                <a href="/products/update/<%= product.id %>" class="detailProd__update-btn">EDITAR</a>
+                                <a id="detailProd__delete-btn" class="detailProd__delete-btn">ELIMINAR</a>
+                                <a href="/products" class="detailProd__back-btn">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <div id="confirm-delete__cont" class="confirm-delete__cont">
+            <form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST" class="confirm-delete__form">
+                <p class="confirm-delete__title">¿Confirma que desea eliminar?</p>
+                <p class="confirm-delete__text"><%= product.name %></p>
+                <div class="confirm-delete__btn-cont">
+                    <button type="submit" class="confirm-delete__btn--green">Confirmar</button>
+                    <a id="cancel__btn" class="confirm-delete__btn--red">Cancelar</a>
+                </div>
+            </form>
+        </div>
+        <% if (alert) { %>
+        <div id="alert-cont" class="alert-cont">
+            <p id="alert" class="alert"><%= alert %></p>
+        </div>
+        <% } %> <%- include('./partials/footer') %>
+        <script src="/js/main.js"></script>
+        <script src="/js/dark-mode.js"></script>
+        <script src="/js/detailProd.js"></script>
+    </body>
+</html>

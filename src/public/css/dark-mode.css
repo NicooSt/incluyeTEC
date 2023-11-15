@@ -1,0 +1,15 @@
+:root {
+    --white: #424874;
+    --light-purple: #A6B1E1;
+    --purple: #DCD6F7;
+    --dark-purple: #F4EEFF;
+    --black: #F4EEFF;
+    --blue: deepskyblue;
+    --green: chartreuse;
+    --orange: coral;
+    --violet: fuchsia;
+    --gray: azure;
+    --red: rgb(252, 78, 78);
+    --alert: azure;
+    --alert-reverse: #424874;
+}

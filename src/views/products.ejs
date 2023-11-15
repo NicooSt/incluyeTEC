@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') -%>
+    <body>
+        <%- include('./partials/header') -%>
+        <main>
+            <p id="products__title" class="section__title">Productos</p>
+            <div class="products__cont--aux">
+                <section id="products__cont" class="products__cont">
+                    <% products.forEach((product) => { %>
+                    <a href="/products/detail/<%= product.id %>" class="product">
+                        <img src="/img/products/<%= product.img_name %>" alt="<%= product.img_name %>" class="product__img" />
+                        <div class="product__name-cont">
+                            <h3 class="product__name"><%= product.name %></h3>
+                        </div>
+                        <div class="product__price-cont">
+                            <% if (product.stock) { %>
+                            <p class="product__price">$ <%= addPricePoint(filterDecimal(product.special_price)) %></p>
+                            <% } else { %>
+                            <p class="product__price product__price--red">PRODUCTO AGOTADO</p>
+                            <% } %>
+                        </div>
+                    </a>
+                    <% }) %>
+                </section>
+            </div>
+        </main>
+        <% if (alert) { %>
+        <div id="alert-cont" class="alert-cont">
+            <p id="alert" class="alert"><%= alert %></p>
+        </div>
+        <% } %> <%- include('./partials/footer') %>
+        <script src="/js/main.js"></script>
+        <script src="/js/dark-mode.js"></script>
+    </body>
+</html>

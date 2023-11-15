@@ -1,0 +1,27 @@
+<header id="header" class="header">
+    <a href="/" class="header__title">Incluye<span>TEC</span></a>
+    <i id="header__icon" class="fa-solid fa-bars header__icon"></i>
+</header>
+<nav class="nav nav--active">
+    <ul id="nav__ul" class="nav__ul nav__ul--inactive">
+        <li class="nav__li"><a href="/" class="nav__link">Inicio</a></li>
+        <li class="nav__li">
+            <a id="nav__link--products" class="nav__link">Productos</a>
+            <ul id="nav__dropdown-ul" class="dropdown__ul">
+                <li class="dropdown__li"><a href="/products" class="dropdown__link">Ver productos</a></li>
+                <li class="dropdown__li"><a href="/products/create" class="dropdown__link">Agregar producto</a></li>
+                <li class="dropdown__li"><a href="/categories/create" class="dropdown__link">Administrar categorías</a></li>
+            </ul>
+        </li>
+        <li class="nav__li"><a href="/about-us" class="nav__link">Sobre nosotros</a></li>
+        <li class="nav__li"><a href="/contact" class="nav__link">Contacto</a></li>
+        <li class="nav__li nav__li--dark-mode">
+            <a class="nav__link link__dark-mode">Modo oscuro</a>
+            <div class="nav__dark-mode-container">
+                <i class="fa-solid fa-sun"></i>
+                <i class="fa-solid fa-moon"></i>
+                <div id="dark-mode" class="dark-mode"></div>
+            </div>
+        </li>
+    </ul>
+</nav>

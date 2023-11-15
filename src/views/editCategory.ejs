@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') -%>
+    <body>
+        <%- include('./partials/header') %>
+        <main class="editCategory__main">
+            <p class="section__title">Administrar categorías</p>
+            <div class="editCategory__admin-btn-cont">
+                <a href="/categories/create" class="editCategory__admin-btn">CREAR</a>
+                <a class="editCategory__admin-btn--selected">EDITAR</a>
+                <a href="/categories/delete" class="editCategory__admin-btn">ELIMINAR</a>
+            </div>
+            <form action="/categories/update?_method=PUT" method="POST" class="editCategory__form">
+                <div class="editCategory__form-inp-cont">
+                    <p class="editCategory__form-inp-txt">Categoría:</p>
+                    <select name="category" class="editCategory__form-inp">
+                        <% categories.forEach(category => { %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="editCategory__form-inp-cont">
+                    <p class="editCategory__form-inp-txt">Nuevo nombre:</p>
+                    <input
+                        type="text"
+                        name="name"
+                        class="editCategory__form-inp"
+                        placeholder="Ingresa el nuevo nombre"
+                        autocomplete="name"
+                        required
+                    />
+                </div>
+                <button type="submit" class="editCategory__form-btn">EDITAR</button>
+            </form>
+        </main>
+        <% if (alert) { %>
+        <div id="alert-cont" class="alert-cont">
+            <p id="alert" class="alert"><%= alert %></p>
+        </div>
+        <% } %> <%- include('./partials/footer') %>
+        <script src="/js/main.js"></script>
+        <script src="/js/dark-mode.js"></script>
+    </body>
+</html>

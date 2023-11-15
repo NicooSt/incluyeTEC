@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') -%>
+    <body>
+        <%- include('./partials/header') -%>
+        <main class="contact__main">
+            <p id="contact" class="section__title">Contacto</p>
+            <form action="/contact?alert=error" method="POST" id="contact__form" class="contact__form">
+                <div class="contact__form-cont">
+                    <p class="contact__form-txt">Nombre:</p>
+                    <input type="text" name="name" class="contact__form-inp" autocomplete="name" />
+                </div>
+                <div class="contact__form-cont">
+                    <p class="contact__form-txt">Apellido:</p>
+                    <input type="text" name="lastname" class="contact__form-inp" />
+                </div>
+                <div class="contact__form-cont">
+                    <p class="contact__form-txt">Email:</p>
+                    <input type="email" name="email" class="contact__form-inp" autocomplete="email" />
+                </div>
+                <textarea name="message" cols="30" rows="10" class="contact__form-textarea" placeholder="Inserte aqui su mensaje."></textarea>
+                <button type="submit" class="contact__form-btn">ENVIAR</button>
+            </form>
+        </main>
+        <% if (alert) { %>
+        <div id="alert-cont" class="alert-cont">
+            <p id="alert" class="alert"><%= alert %></p>
+        </div>
+        <% } %> <%- include('./partials/footer') %>
+        <script src="/js/main.js"></script>
+        <script src="/js/dark-mode.js"></script>
+    </body>
+</html>

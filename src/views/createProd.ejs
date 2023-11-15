@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') -%>
+    <body>
+        <%- include('./partials/header') %>
+        <main class="createProd__main">
+            <p class="section__title">Agregar producto</p>
+            <form action="/products/create" method="POST" enctype="multipart/form-data" class="createProd__form">
+                <div class="createProd__form-inp-cont">
+                    <p class="createProd__form-inp-txt">Nombre:</p>
+                    <% if (!data) { %>
+                    <input
+                        type="text"
+                        name="name"
+                        class="createProd__form-inp createProd__form-inp--padding"
+                        placeholder="Ingresa el nombre"
+                        autocomplete="name"
+                    />
+                    <% } else { %>
+                    <input
+                        type="text"
+                        name="name"
+                        value="<%= data.name %>"
+                        class="createProd__form-inp createProd__form-inp--padding"
+                        placeholder="Ingresa el nombre"
+                        autocomplete="name"
+                    />
+                    <% } %>
+                </div>
+                <div class="createProd__form-inp-cont">
+                    <p class="createProd__form-inp-txt">Categoria:</p>
+                    <select name="category" class="createProd__form-inp">
+                        <% if (!data) { %>
+                        <option value="Seleccione">Seleccione</option>
+                        <% categories.forEach(category => { %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                        <% }) %> <% } else { %> <% if (!data.id_category) { %>
+                        <option value="Seleccione">Seleccione</option>
+                        <% categories.forEach(category => { %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                        <% }) %> <% } else { %>
+                        <option value="Seleccione">Seleccione</option>
+                        <% categories.forEach(category => { %> <% if (category.id != data.id_category) { %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                        <% } else { %>
+                        <option value="<%= category.id %>" selected><%= category.name %></option>
+                        <% } %> <% }) %> <% } %> <% } %>
+                    </select>
+                </div>
+                <div class="createProd__form-inp-cont">
+                    <p class="createProd__form-inp-txt">Precio de lista:</p>
+                    <% if (!data) { %>
+                    <input
+                        type="text"
+                        name="listPrice"
+                        id="createProd__listPrice-inp"
+                        class="createProd__form-inp createProd__form-inp--padding"
+                        placeholder="Ingresa el precio de lista"
+                    />
+                    <% } else { %>
+                    <input
+                        type="text"
+                        name="listPrice"
+                        id="createProd__listPrice-inp"
+                        value="<%= data.list_price %>"
+                        class="createProd__form-inp createProd__form-inp--padding"
+                        placeholder="Ingresa el precio de lista"
+                    />
+                    <% } %>
+                </div>
+                <div class="createProd__form-inp-cont">
+                    <p class="createProd__form-inp-txt">Precio especial:</p>
+                    <% if (!data) { %>
+                    <input
+                        type="text"
+                        name="specialPrice"
+                        class="createProd__form-inp createProd__form-inp--padding"
+                        placeholder="Ingresa el precio especial"
+                    />
+                    <% } else { %>
+                    <input
+                        type="text"
+                        name="specialPrice"
+                        value="<%= data.special_price %>"
+                        class="createProd__form-inp createProd__form-inp--padding"
+                        placeholder="Ingresa el precio especial"
+                    />
+                    <% } %>
+                </div>
+                <div class="createProd__separator"></div>
+                <div class="createProd__form-inp-cont createProd__form-inp-cont--flex">
+                    <div class="createProd__form-options-cont">
+                        <div class="createProd__form-options">
+                            <p class="createProd__form-inp-txt">Cuotas:</p>
+                            <select name="installments" id="installments-inp" class="createProd__form-inp createProd__form-options-inp">
+                                <option value="withOutInstallments">No</option>
+                                <option value="withInstallments">Si</option>
+                            </select>
+                        </div>
+                        <div class="createProd__form-options">
+                            <p class="createProd__form-inp-txt">Cantidad:</p>
+                            <select
+                                name="installmentsNum"
+                                id="installmentsNum-inp"
+                                class="createProd__form-inp createProd__form-options-inp"
+                                disabled
+                            >
+                                <option value="1">1 cuota</option>
+                                <% for(let i = 2; i <= 24; i++) { %>
+                                <option value="<%= i %>"><%= i %> cuotas</option>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="createProd__form-options-cont createProd__form-options-cont--margin">
+                        <div class="createProd__form-options">
+                            <p class="createProd__form-inp-txt">Modalidad:</p>
+                            <select name="interest" id="interest-inp" class="createProd__form-inp createProd__form-options-inp" disabled>
+                                <option value="withInterest">Con interes</option>
+                                <option value="freeInterest">Sin interes</option>
+                            </select>
+                        </div>
+                        <div class="createProd__form-options">
+                            <p class="createProd__form-inp-txt">Porcentaje:</p>
+                            <div class="createProd__form-options-rate">
+                                <% if (!data) { %>
+                                <input
+                                    type="text"
+                                    name="interestRate"
+                                    id="interestRate-inp"
+                                    class="createProd__form-inp createProd__form-options-inp createProd__form-inp--padding"
+                                    disabled
+                                />
+                                <% } else { %>
+                                <input
+                                    type="text"
+                                    name="interestRate"
+                                    value="<%= data.interest_rate %>"
+                                    id="interestRate-inp"
+                                    class="createProd__form-inp createProd__form-options-inp createProd__form-inp--padding"
+                                    disabled
+                                />
+                                <% } %>
+                                <span>%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="createProd__separator"></div>
+                <div class="createProd__form-inp-cont createProd__form-inp-cont--flex">
+                    <div class="createProd__form-options-cont">
+                        <div class="createProd__form-options">
+                            <p class="createProd__form-inp-txt">Stock:</p>
+                            <select name="stock" id="stock-inp" class="createProd__form-inp createProd__form-options-inp">
+                                <option value="hasStock">Si</option>
+                                <option value="hasntStock">No</option>
+                            </select>
+                        </div>
+                        <div class="createProd__form-options">
+                            <p class="createProd__form-inp-txt">Envío:</p>
+                            <select name="shipment" id="shipment-inp" class="createProd__form-inp createProd__form-options-inp">
+                                <option value="withShipment">Si</option>
+                                <option value="withOutShipment">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="createProd__form-options-cont createProd__form-options-cont--margin">
+                        <div class="createProd__form-options">
+                            <p class="createProd__form-inp-txt">Garantía:</p>
+                            <select name="warranty" id="warranty-inp" class="createProd__form-inp createProd__form-options-inp">
+                                <option value="withWarranty">Si</option>
+                                <option value="withOutWarranty">No</option>
+                            </select>
+                        </div>
+                        <div class="createProd__form-options">
+                            <p class="createProd__form-inp-txt">Duración:</p>
+                            <select name="warrantyDuration" id="warrantyDuration-inp" class="createProd__form-inp createProd__form-options-inp">
+                                <option value="1 mes">1 mes</option>
+                                <% for(let i = 2; i <= 24; i++) { %>
+                                <option value="<%= i %> meses"><%= i %> meses</option>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="createProd__separator"></div>
+                <div class="createProd__form-inp-cont createProd__form-file-cont">
+                    <p class="createProd__form-inp-txt">Imagen:</p>
+                    <input type="file" name="image" class="createProd__form-inp" />
+                </div>
+                <button type="submit" class="createProd__form-btn">AGREGAR</button>
+            </form>
+        </main>
+        <% if (alert) { %>
+        <div id="alert-cont" class="alert-cont">
+            <p id="alert" class="alert"><%= alert %></p>
+        </div>
+        <% } %> <%- include('./partials/footer') %>
+        <script src="/js/main.js"></script>
+        <script src="/js/dark-mode.js"></script>
+        <script src="/js/createProd.js"></script>
+    </body>
+</html>

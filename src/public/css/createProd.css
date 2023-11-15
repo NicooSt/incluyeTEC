@@ -1,0 +1,179 @@
+.createProd__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.createProd__form {
+    width: 95%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--dark-purple);
+    border-radius: 10px;
+    background-color: var(--light-purple);
+}
+
+.createProd__form-inp-cont {
+    font-size: 20px;
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.createProd__form-file-cont {
+    width: auto;
+    color: var(--dark-purple);
+}
+
+.createProd__form-inp-txt {
+    text-align: center;
+    color: var(--dark-purple);
+    width: 90%;
+}
+
+.createProd__form-inp {
+    font-size: 18px;
+    padding: 5px;
+    width: 90%;
+}
+
+.createProd__form-options-cont {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.createProd__form-options-cont--margin {
+    margin-top: 5px;
+}
+
+.createProd__form-options {
+    width: 50%;
+}
+
+.createProd__form-options-inp {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.createProd__form-inp--padding {
+    padding-left: 7px;
+}
+
+.createProd__form-options-rate {
+    color: var(--dark-purple);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.createProd__form-options-rate span {
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+.createProd__form-btn {
+    width: 100%;
+    height: 40px;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 10px;
+    color: var(--white);
+    background-color: var(--dark-purple);
+    border: 0;
+    border-top: 1px solid var(--dark-purple);
+    border-radius: 0 0 9px 9px;
+    transition: ease .5s;
+}
+
+.createProd__form-btn:hover {
+    font-weight: bold;
+    color: var(--dark-purple);
+    background-color: var(--white);
+    transition: ease .5s;
+    cursor: pointer;
+}
+
+.createProd__separator {
+    width: 90%;
+    margin-top: 15px;
+    border-bottom: 1px solid var(--dark-purple);
+    opacity: 50%;
+}
+
+@media (min-width: 550px) {
+    .createProd__form {
+        max-width: 600px;
+    }
+
+    .createProd__form-inp-cont {
+        width: 90%;
+        flex-direction: initial;
+        gap: 0;
+        margin-bottom: 0;
+    }
+
+    .createProd__form-inp-cont--flex {
+        flex-direction: column;
+    }
+
+    /* Estilos que comparten todos los inputs */
+    .createProd__form-inp-txt {
+        width: 40%;
+        font-size: 25px;
+        text-align: start;
+    }
+
+    .createProd__form-inp {
+        width: 60%;
+    }
+
+    /* --- Estilos de cuotas y garamtias --- */
+    .createProd__form-options-cont {
+        width: 100%;
+    }
+
+    .createProd__form-options-cont--margin {
+        margin-top: 15px;
+    }
+
+    .createProd__form-options {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .createProd__form-options-inp {
+        margin-top: 0;
+    }
+
+    .createProd__form-options p {
+        width: 50%;
+    }
+
+    .createProd__form-options-rate {
+        width: 50%;
+    }
+
+    .createProd__form-options-rate input {
+        width: 80%;
+    }
+
+    .createProd__form-options-rate span {
+        width: 20%;
+    }
+
+    .createProd__form-options-inp {
+        width: 50%;
+    }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') -%>
+    <body>
+        <%- include('./partials/header') %>
+        <main class="createCategory__main">
+            <p class="section__title">Administrar categorías</p>
+            <div class="createCategory__admin-btn-cont">
+                <a class="createCategory__admin-btn--selected">CREAR</a>
+                <a href="/categories/update" class="createCategory__admin-btn">EDITAR</a>
+                <a href="/categories/delete" class="createCategory__admin-btn">ELIMINAR</a>
+            </div>
+            <form action="/categories/create" method="POST" class="createCategory__form">
+                <div class="createCategory__form-inp-cont">
+                    <p class="createCategory__form-inp-txt">Nombre:</p>
+                    <input type="text" name="name" class="createCategory__form-inp" placeholder="Ingresa el nombre" autocomplete="name" required />
+                </div>
+                <div class="createCategory__separator"></div>
+                <div class="createCategory__form-inp-cont createCategory__form-inp-cont--flex">
+                    <p class="createCategory__form-inp-txt">Lista de catogorías:</p>
+                    <div class="createCategory__form-ul-cont">
+                        <ul id="category-ul" class="createCategory__form-ul">
+                            <% categories.forEach(category => { %>
+                            <li><%= category.name %></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                <button type="submit" class="createCategory__form-btn">AGREGAR</button>
+            </form>
+        </main>
+        <% if (alert) { %>
+        <div id="alert-cont" class="alert-cont">
+            <p id="alert" class="alert"><%= alert %></p>
+        </div>
+        <% } %> <%- include('./partials/footer') %>
+        <script src="/js/main.js"></script>
+        <script src="/js/dark-mode.js"></script>
+        <script src="/js/categories.js"></script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') -%>
+    <body>
+        <%- include('./partials/header') %>
+        <main class="deleteCategory__main">
+            <p class="section__title">Administrar categorías</p>
+            <div class="deleteCategory__admin-btn-cont">
+                <a href="/categories/create" class="deleteCategory__admin-btn">CREAR</a>
+                <a href="/categories/update" class="deleteCategory__admin-btn">EDITAR</a>
+                <a class="deleteCategory__admin-btn--selected">ELIMINAR</a>
+            </div>
+            <div class="deleteCategory__form">
+                <div class="deleteCategory__form-inp-cont">
+                    <p class="deleteCategory__form-inp-txt">Categoría:</p>
+                    <select name="category" id="deleteCategory__select" class="deleteCategory__form-inp">
+                        <% categories.forEach(category => { %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <button id="deleteCategory__btn" class="deleteCategory__form-btn">ELIMINAR</button>
+            </div>
+        </main>
+        <div id="confirm-delete__cont" class="confirm-delete__cont">
+            <form method="POST" id="confirm-delete__form" class="confirm-delete__form">
+                <p class="confirm-delete__title">¿Confirma que desea eliminar?</p>
+                <p id="confirm-delete__text" class="confirm-delete__text"></p>
+                <div class="confirm-delete__btn-cont">
+                    <button type="submit" class="confirm-delete__btn--green">Confirmar</button>
+                    <a id="cancel__btn" class="confirm-delete__btn--red">Cancelar</a>
+                </div>
+            </form>
+        </div>
+        <% if (alert) { %>
+        <div id="alert-cont" class="alert-cont">
+            <p id="alert" class="alert"><%= alert %></p>
+        </div>
+        <% } %> <%- include('./partials/footer') %>
+        <script src="/js/main.js"></script>
+        <script src="/js/dark-mode.js"></script>
+        <script src="/js/deleteCategory.js"></script>
+    </body>
+</html>

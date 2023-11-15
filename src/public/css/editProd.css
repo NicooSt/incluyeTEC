@@ -1,0 +1,205 @@
+.editProd__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.editProd__form {
+    width: 95%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--dark-purple);
+    border-radius: 10px;
+    background-color: var(--light-purple);
+}
+
+.editProd__form-inp-cont {
+    font-size: 20px;
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.editProd__form-file-cont {
+    width: auto;
+    color: var(--dark-purple);
+}
+
+.editProd__form-inp-txt {
+    text-align: center;
+    color: var(--dark-purple);
+    width: 90%;
+}
+
+.editProd__form-inp {
+    font-size: 18px;
+    padding: 5px;
+    width: 90%;
+}
+
+.editProd__form-options-cont {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.editProd__form-options-cont--margin {
+    margin-top: 5px;
+}
+
+.editProd__form-options {
+    width: 50%;
+}
+
+.editProd__form-options-inp {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.editProd__form-inp--padding {
+    padding-left: 7px;
+}
+
+.editProd__form-options-rate {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.editProd__form-options-rate span {
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+.editProd__form-btn-cont {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.editProd__form-btn,
+.editProd__form-cancel-btn {
+    width: 50%;
+    height: 40px;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 10px;
+    color: whitesmoke;
+    border: 0;
+    border-top: 1px solid var(--dark-purple);
+    transition: ease .5s;
+}
+
+.editProd__form-btn {
+    background-color: green;
+    border-right: 1px solid var(--dark-purple);
+    border-radius: 0 0 0 9px;
+}
+
+.editProd__form-btn:hover {
+    font-weight: bold;
+    color: green;
+    background-color: whitesmoke;
+    transition: ease .5s;
+    cursor: pointer;
+}
+
+.editProd__form-cancel-btn {
+    line-height: 40px;
+    text-decoration: none;
+    background-color: red;
+    border-left: 1px solid var(--dark-purple);
+    border-radius: 0 0 9px 0;
+}
+
+.editProd__form-cancel-btn:hover {
+    font-weight: bold;
+    color: red;
+    background-color: whitesmoke;
+    transition: ease .5s;
+    cursor: pointer;
+}
+
+.editProd__separator {
+    width: 90%;
+    margin-top: 15px;
+    border-bottom: 1px solid var(--dark-purple);
+    opacity: 50%;
+}
+
+@media (min-width: 550px) {
+    .editProd__form {
+        max-width: 600px;
+    }
+
+    .editProd__form-inp-cont {
+        width: 90%;
+        flex-direction: initial;
+        gap: 0;
+        margin-bottom: 0;
+    }
+
+    .editProd__form-inp-cont--flex {
+        flex-direction: column;
+    }
+
+    /* Estilos que comparten todos los inputs */
+    .editProd__form-inp-txt {
+        width: 40%;
+        font-size: 25px;
+        text-align: start;
+    }
+
+    .editProd__form-inp {
+        width: 60%;
+    }
+
+    /* --- Estilos de cuotas y garamtias --- */
+    .editProd__form-options-cont {
+        width: 100%;
+    }
+
+    .editProd__form-options-cont--margin {
+        margin-top: 15px;
+    }
+
+    .editProd__form-options {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .editProd__form-options-inp {
+        margin-top: 0;
+    }
+
+    .editProd__form-options p {
+        width: 50%;
+    }
+
+    .editProd__form-options-rate {
+        width: 50%;
+    }
+
+    .editProd__form-options-rate input {
+        width: 80%;
+    }
+
+    .editProd__form-options-rate span {
+        width: 20%;
+    }
+
+    .editProd__form-options-inp {
+        width: 50%;
+    }
+}

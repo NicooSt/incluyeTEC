@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') -%>
+    <body>
+        <%- include('./partials/header') %>
+        <main class="editProd__main">
+            <p class="section__title">Editar producto</p>
+            <form action="/products/update/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="editProd__form">
+                <div class="editProd__form-inp-cont">
+                    <p class="editProd__form-inp-txt">Nombre:</p>
+                    <% if (!data) { %>
+                    <input
+                        type="text"
+                        name="name"
+                        value="<%= product.name %>"
+                        class="editProd__form-inp editProd__form-inp--padding"
+                        placeholder="Ingresa el nombre"
+                        autocomplete="name"
+                        required
+                    />
+                    <% } else { %>
+                    <input
+                        type="text"
+                        name="name"
+                        value="<%= data.name %>"
+                        class="editProd__form-inp editProd__form-inp--padding"
+                        placeholder="Ingresa el nombre"
+                        autocomplete="name"
+                        required
+                    />
+                    <% } %>
+                </div>
+                <div class="editProd__form-inp-cont">
+                    <p class="editProd__form-inp-txt">Categoria:</p>
+                    <select name="category" class="editProd__form-inp">
+                        <% if (!data) { %>
+                        <option value="Seleccione">Seleccione</option>
+                        <% categories.forEach(category => { %> <% if (category.id != product.id_category ) { %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                        <% } else { %>
+                        <option value="<%= category.id %>" selected><%= category.name %></option>
+                        <% } %> <% }) %> <% } else { %> <% if (!data.id_category) { %>
+                        <option value="Seleccione">Seleccione</option>
+                        <% categories.forEach(category => { %> <% if (category.id != product.id_category ) { %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                        <% } else { %>
+                        <option value="<%= category.id %>" selected><%= category.name %></option>
+                        <% } %> <% }) %> <% } else { %>
+                        <option value="Seleccione">Seleccione</option>
+                        <% categories.forEach(category => { %> <% if (category.id != data.id_category) { %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                        <% } else { %>
+                        <option value="<%= category.id %>" selected><%= category.name %></option>
+                        <% } %> <% }) %> <% } %> <% } %>
+                    </select>
+                </div>
+                <div class="editProd__form-inp-cont">
+                    <p class="editProd__form-inp-txt">Precio de lista:</p>
+                    <% if (!data) { %>
+                    <input
+                        type="text"
+                        name="listPrice"
+                        value="<%= product.list_price %>"
+                        class="editProd__form-inp editProd__form-inp--padding"
+                        placeholder="Ingresa el precio de lista"
+                        required
+                    />
+                    <% } else { %>
+                    <input
+                        type="text"
+                        name="listPrice"
+                        value="<%= data.list_price %>"
+                        class="editProd__form-inp editProd__form-inp--padding"
+                        placeholder="Ingresa el precio de lista"
+                        required
+                    />
+                    <% } %>
+                </div>
+                <div class="editProd__form-inp-cont">
+                    <p class="editProd__form-inp-txt">Precio especial:</p>
+                    <% if (!data) { %>
+                    <input
+                        type="text"
+                        name="specialPrice"
+                        value="<%= product.special_price %>"
+                        class="editProd__form-inp editProd__form-inp--padding"
+                        placeholder="Ingresa el precio especial"
+                        required
+                    />
+                    <% } else { %>
+                    <input
+                        type="text"
+                        name="specialPrice"
+                        value="<%= data.special_price %>"
+                        class="editProd__form-inp editProd__form-inp--padding"
+                        placeholder="Ingresa el precio especial"
+                        required
+                    />
+                    <% } %>
+                </div>
+                <div class="editProd__separator"></div>
+                <div class="editProd__form-inp-cont editProd__form-inp-cont--flex">
+                    <div class="editProd__form-options-cont">
+                        <div class="editProd__form-options">
+                            <p class="editProd__form-inp-txt">Cuotas:</p>
+                            <select name="installments" id="installments-inp" class="editProd__form-inp editProd__form-options-inp">
+                                <% if (!product.installments) { %>
+                                <option value="withOutInstallments">No</option>
+                                <option value="withInstallments">Si</option>
+                                <% } else { %>
+                                <option value="withOutInstallments">No</option>
+                                <option value="withInstallments" selected>Si</option>
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="editProd__form-options">
+                            <p class="editProd__form-inp-txt">Cantidad:</p>
+                            <select name="installmentsNum" id="installmentsNum-inp" class="editProd__form-inp editProd__form-options-inp" disabled>
+                                <option value="1">1 cuota</option>
+                                <% for(let i = 2; i <= 24; i++) { %> <% if (product.installments_num != i) { %>
+                                <option value="<%= i %>"><%= i %> cuotas</option>
+                                <% } else { %>
+                                <option value="<%= i %>" selected><%= i %> cuotas</option>
+                                <% } %> <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="editProd__form-options-cont editProd__form-options-cont--margin">
+                        <div class="editProd__form-options">
+                            <p class="editProd__form-inp-txt">Modalidad:</p>
+                            <select name="interest" id="interest-inp" class="editProd__form-inp editProd__form-options-inp" required disabled>
+                                <% if (product.interest) { %>
+                                <option value="withInterest">Con interes</option>
+                                <option value="freeInterest">Sin interes</option>
+                                <% } else { %>
+                                <option value="withInterest">Con interes</option>
+                                <option value="freeInterest" selected>Sin interes</option>
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="editProd__form-options">
+                            <p class="editProd__form-inp-txt">Porcentaje:</p>
+                            <div class="editProd__form-options-rate">
+                                <% if (!data) { %> <% if (product.interest) { %>
+                                <input
+                                    type="number"
+                                    name="interestRate"
+                                    value="<%= product.interest_rate %>"
+                                    id="interestRate-inp"
+                                    class="editProd__form-inp editProd__form-options-inp editProd__form-inp--padding"
+                                    disabled
+                                />
+                                <% } else { %>
+                                <input
+                                    type="number"
+                                    name="interestRate"
+                                    id="interestRate-inp"
+                                    class="editProd__form-inp editProd__form-options-inp"
+                                    disabled
+                                />
+                                <% } %> <% } else { %> <% if (product.interest) { %>
+                                <input
+                                    type="number"
+                                    name="interestRate"
+                                    value="<%= data.interest_rate %>"
+                                    id="interestRate-inp"
+                                    class="editProd__form-inp editProd__form-options-inp editProd__form-inp--padding"
+                                    disabled
+                                />
+                                <% } else { %>
+                                <input
+                                    type="number"
+                                    name="interestRate"
+                                    id="interestRate-inp"
+                                    class="editProd__form-inp editProd__form-options-inp"
+                                    disabled
+                                />
+                                <% } %> <% } %>
+                                <span>%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="editProd__separator"></div>
+                <div class="editProd__form-inp-cont editProd__form-inp-cont--flex">
+                    <div class="editProd__form-options-cont">
+                        <div class="editProd__form-options">
+                            <p class="editProd__form-inp-txt">Stock:</p>
+                            <select name="stock" id="stock-inp" class="editProd__form-inp editProd__form-options-inp">
+                                <% if (product.stock) { %>
+                                <option value="hasStock">Si</option>
+                                <option value="hasntStock">No</option>
+                                <% } else { %>
+                                <option value="hasStock">Si</option>
+                                <option value="hasntStock" selected>No</option>
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="editProd__form-options">
+                            <p class="editProd__form-inp-txt">Envío:</p>
+                            <select name="shipment" id="shipment-inp" class="editProd__form-inp editProd__form-options-inp">
+                                <% if (product.shipment) { %>
+                                <option value="withShipment">Si</option>
+                                <option value="withOutShipment">No</option>
+                                <% } else { %>
+                                <option value="withShipment">Si</option>
+                                <option value="withOutShipment" selected>No</option>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="editProd__form-options-cont editProd__form-options-cont--margin">
+                        <div class="editProd__form-options">
+                            <p class="editProd__form-inp-txt">Garantía:</p>
+                            <select name="warranty" id="warranty-inp" class="editProd__form-inp editProd__form-options-inp">
+                                <% if (product.warranty) { %>
+                                <option value="withWarranty">Si</option>
+                                <option value="withOutWarranty">No</option>
+                                <% } else { %>
+                                <option value="withWarranty">Si</option>
+                                <option value="withOutWarranty" selected>No</option>
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="editProd__form-options">
+                            <p class="editProd__form-inp-txt">Duración:</p>
+                            <select name="warrantyDuration" id="warrantyDuration-inp" class="editProd__form-inp editProd__form-options-inp">
+                                <option value="1 mes">1 mes</option>
+                                <% for(let i = 2; i <= 24; i++) { %> <% if (product.warranty_duration != (i + ' meses')) { %>
+                                <option value="<%= i %> meses"><%= i %> meses</option>
+                                <% } else { %>
+                                <option value="<%= i %> meses" selected><%= i %> meses</option>
+                                <% } %> <% } %>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="editProd__separator"></div>
+                <div class="editProd__form-inp-cont editProd__form-file-cont">
+                    <p class="editProd__form-inp-txt">Imagen:</p>
+                    <input type="file" name="image" class="editProd__form-inp" />
+                </div>
+                <div class="editProd__form-btn-cont">
+                    <button type="submit" class="editProd__form-btn">CONFIRMAR</button>
+                    <a href="/products/detail/<%= product.id %>" class="editProd__form-cancel-btn">CANCELAR</a>
+                </div>
+            </form>
+        </main>
+        <% if (alert) { %>
+        <div id="alert-cont" class="alert-cont">
+            <p id="alert" class="alert"><%= alert %></p>
+        </div>
+        <% } %> <%- include('./partials/footer') %>
+        <script src="/js/main.js"></script>
+        <script src="/js/editProd.js"></script>
+        <script src="/js/dark-mode.js"></script>
+    </body>
+</html>
